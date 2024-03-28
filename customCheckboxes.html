@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Checkboxes</title>
+    <style>
+        .custom-checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .custom-checkbox {
+            padding: 10px;
+            border: 2px solid #000; /* Black border */
+            border-radius: 5px;
+            cursor: pointer;
+            user-select: none; /* This will prevent the text from being selectable, which is standard for checkboxes */
+        }
+
+        .custom-checkbox.selected {
+            background-color: #007bff; /* Blue background for selected */
+            color: #fff; /* White text for selected */
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-checkbox-group">
+        <div id="checkbox1" class="custom-checkbox" onclick="toggleCheckbox(this)">Checkbox 1</div>
+        <div id="checkbox2" class="custom-checkbox" onclick="toggleCheckbox(this)">Checkbox 2</div>
+        <div id="checkbox3" class="custom-checkbox" onclick="toggleCheckbox(this)">Checkbox 3</div>
+        <div id="checkbox4" class="custom-checkbox" onclick="toggleCheckbox(this)">Checkbox 4</div>
+    </div>
+
+    <script>
+        function toggleCheckbox(element) {
+            const MAX_SELECTIONS = 2;
+            const selectedCheckboxes = document.querySelectorAll('.custom-checkbox.selected');
+            if (element.classList.contains('selected')) {
+                // Deselect if already selected
+                element.classList.remove('selected');
+            } else {
+                // Check if we've reached the max selections
+                if (selectedCheckboxes.length >= MAX_SELECTIONS) {
+                    alert('You can only select ' + MAX_SELECTIONS + ' options.');
+                    return; // Exit without selecting a new checkbox
+                }
+                // Otherwise, select the new checkbox
+                element.classList.add('selected');
+            }
+        }
+    </script>
+</body>
+</html>
